@@ -36,3 +36,67 @@
     transform: rotate(360deg);
   }
 }
+
+
+.leftSide{
+  background-color: green;
+  height: 800px;
+  display: inline-flex;
+  border-color: green;
+}
+
+.rightSide{
+  display: inline-block;
+  height: 800px;
+  border-color: red;
+  text-align: center;
+}
+
+li {
+  list-style: none;
+}
+ul {
+  padding-top: 80px;
+}
+a{
+  margin-left: 20px;
+}
+.formData{
+  display: inline-flex;
+  text-align: center;
+  margin: 0 30px;
+}
+.formCard{
+  max-width: 600px;
+  margin: auto;
+}
+
+.submitBtn{
+  background-color: green;
+}
+/* .formCard{
+  margin: 50px;
+} */
+.card {
+  margin: 60px 80px 80px 80px
+}
+
+input [type="text"]
+input [type="email"]
+ {
+  margin-top:20px
+}
+.inputMargin {
+  margin-top:20px
+}
+/* .image{
+  height: 60px;
+  margin-left: 200px
+}
+.footerPara{
+  margin-left: 200px
+} */
+.errorMessage{
+  color: red;
+  float:left
+}
