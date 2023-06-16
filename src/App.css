@@ -62,7 +62,7 @@ a{
   margin-left: 20px;
 }
 .formData{
-  display: inline-flex;
+  /* display: inline-flex; */
   text-align: center;
   margin: 0 30px;
 }
@@ -86,6 +86,9 @@ input [type="email"]
  {
   margin-top:20px
 }
+.select{
+  margin-top:20px
+}
 .inputMargin {
   margin-top:20px
 }
@@ -98,5 +101,5 @@ input [type="email"]
 } */
 .errorMessage{
   color: red;
-  float:left
+  /* float:left */
 }
