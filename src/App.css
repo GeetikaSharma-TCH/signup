@@ -90,7 +90,8 @@ input [type="email"]
   margin-top:20px
 }
 .inputMargin {
-  margin-top:20px
+  margin-top:20px;
+  /* padding-top: 10px */
 }
 /* .image{
   height: 60px;

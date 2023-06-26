@@ -10,15 +10,19 @@ const RightSide = () => {
         course:""
     })
 
-    const [ enableSubmit, setSubmit] = useState(false)
+    // const [ enableSubmit, setSubmit] = useState(false)
     const [commonError, setCommonError] = useState({})
 
 
     // call when input change
     const onChangeInput = (event) => {
         event.preventDefault()
-        console.log('event', event)
+        console.log('event', event, event.target.name, event.target.value)
+
         setUserData({ ...userData, [event.target.name]: event.target.value })
+        console.log('uswerData === ', userData)
+        console.log('uswerData.course === ', event.target.value)
+
         const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
         const phoneRegex = /^[0-9]\d{9,9}$/g
         if (event.target.name === 'firstname' && userData.firstname.length <= 5) {
@@ -28,14 +32,15 @@ const RightSide = () => {
           setCommonError({ ...commonError, email: 'Please enter a valid email address' })
         } else if (event.target.name === 'lastname' && userData.lastname.length <= 5) {
           setCommonError({ ...commonError, lastname: 'Minimum 5 charcters required' })
-        } else if (event.target.name === 'course' && userData.course === '') {
+        } else if (event.target.name === 'course' && userData.course === 'Select course') {
           setCommonError({ ...commonError, course: 'Select at least one option' })
         }else if (event.target.name==="phoneNumber" && typeof(userData.phoneNumber) !== 'number' && !phoneRegex.test(userData.phoneNumber)) {
             setCommonError({ ...commonError, phoneNumber: 'Enter digit only and digit should be 10' }) 
         }else {
-          setCommonError({ ...commonError, firtsname: '', email: '', lastname: '', course: '', phoneNumber: '', code : '' })
+            console.log('else===')
+        //   setCommonError({ ...commonError, firtsname: '', email: '', lastname: '', course: '', phoneNumber: '', code : '' })
         }
-        setSubmit(true)
+        // setSubmit(true)
         console.log('commomError',commonError)
         console.log('userData',userData)
 
@@ -96,11 +101,12 @@ const RightSide = () => {
                                 value={userData.email}
                                 onChange={(event)=> onChangeInput(event)}/>
                                  {commonError.email !== '' ? <p className="errorMessage">{commonError.email}</p> : null }
-                                 <div className='row float-left' style={{display: 'flex'}}>
-                                 <div className="col-md-3">
+                            {/* <div className='row float-left' style={{display: 'flex'}}> */}
+                            <div className='row'>
+                                <div className="col-md-3">
                                         <select 
-                                            name="code"  
-                                            className='form-control inputMargin' 
+                                            name="code" 
+                                            className='form-control' 
                                             id="wqe"
                                             value={userData.code}
                                             onChange={(event)=>onChangeInput(event)}>
@@ -109,30 +115,32 @@ const RightSide = () => {
                                             <option  value="213">+213</option>
                                             <option  value="376">+376</option>`
                                         </select>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <input 
-                                            type="text" 
-                                            name="phoneNumber"
-                                            value={userData.phoneNumber}
-                                            onChange={(event)=>onChangeInput(event)}
-                                            className='form-control inputMargin' 
-                                            placeholder="Phone Number"/>
-                                        {commonError.phoneNumber !== '' ? <p className="errorMessage">{commonError.phoneNumber}</p> : null }
-                                    </div>
-                                 </div>
+                                </div>
+                                <div className="col-md-9">
+                                    <input 
+                                        type="text" 
+                                        name="phoneNumber"
+                                        value={userData.phoneNumber}
+                                        onChange={(event)=>onChangeInput(event)}
+                                        className='form-control' 
+                                        placeholder="Phone Number"/>
+                                    {commonError.phoneNumber !== '' ? <p className="errorMessage">{commonError.phoneNumber}</p> : null }
+                                </div>
+                            </div>
                                  <select 
-                                            name="course"  
-                                            className='form-control inputMargin' 
-                                            id="wqe"
-                                            value={userData.course}
-                                            onChange={(event)=>onChangeInput(event)}>
-                                            <option  value="BioChemistry"> BioChemistry </option>
-                                            <option  value="Physics">Physics</option>
-                                            <option  value="Chemistry">Chemistry</option>
-                                            <option  value="Science">Science</option>`
-                                </select>
-                            {commonError.course !== '' ? <p className="errorMessage">{commonError.course}</p> : null }
+                                    name="course"  
+                                    className='form-control' 
+                                    id="wqe"
+                                    value={userData.course}
+                                    placeholder='Select Course'
+                                    onChange={(event)=>onChangeInput(event)}>
+                                    <option  value="Select course"> Select Course </option>
+                                    <option  value="BioChemistry"> BioChemistry </option>
+                                    <option  value="Physics">Physics</option>
+                                    <option  value="Chemistry">Chemistry</option>
+                                    <option  value="Science">Science</option>`
+                                 </select>
+                            {commonError.course === 'Select course' ? <p className="errorMessage">{commonError.course}</p> : null }
                         </div>
                         <button 
                             type="submit" 
